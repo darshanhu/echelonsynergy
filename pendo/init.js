@@ -62,9 +62,9 @@ drift.SNIPPET_VERSION = '0.3.1';
 drift.load('d78t5n79wnmf');
 
 drift.on('ready', function(api, payload) {
-  api.identify({
+  drift.api.setUserAttributes({
     email: "darshan@echelonsynergy.com",
     name: 'Darshan Hulswar',    
     userId: 'DH-20240911-001'             
-  });
+  })
 });
