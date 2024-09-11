@@ -61,7 +61,7 @@
 drift.SNIPPET_VERSION = '0.3.1';
 drift.load('d78t5n79wnmf');
 
-drift.on('ready', function(api) {
+drift.on('ready', function(api, payload) {
   api.identify({
     email: "darshan@echelonsynergy.com",
     name: 'Darshan Hulswar',    
