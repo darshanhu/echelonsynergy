@@ -38,6 +38,7 @@
       numericList: [400, 500, 600, 700, 800],
       uniqueClientId: 99294858,
       serverUrl: "https://echelonsynergy.netlify.app",
+      clientName: "SkyFlux",
     },
 
     account: {
