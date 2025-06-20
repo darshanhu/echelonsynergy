@@ -3145,7 +3145,19 @@
 	<script src="assets/js/styleSwitcher.js"></script>
 	<script src="assets/js/demo.min.js"></script>
 
-
+	<script>
+		(function (window, e, n, es, ys) {
+			window['_genesysJs'] = e;
+			window[e] = window[e] || function() { (window[e].q = window[e].q || []).push(arguments); };
+			window[e].t = 1 * new Date();
+			window[e].c = es;
+			ys = document.createElement('script'); ys.async = true; ys.src = n; ys.charset = 'utf-8';
+			document.head.appendChild(ys);
+			})(window, 'Genesys', 'https://apps.mypurecloud.com/genesys-bootstrap/genesys.min.js', {
+			environment: 'prod',
+			deploymentId: '2881662c-67a2-411e-bf2f-db82f7178594'
+		});		
+	</script>
 
 </body>
 
