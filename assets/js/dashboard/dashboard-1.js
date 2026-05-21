@@ -507,8 +507,17 @@
         var chart = new ApexCharts(document.querySelector("#overiewChart"), options);
         chart.render();
 		
+		var currentOverviewPeriod = 'week';
 		$(".mix-chart-tab .nav-link").on('click',function(){
 			var seriesType = $(this).attr('data-series');
+			if (typeof pendo !== "undefined") {
+				pendo.track("dashboard_period_changed", {
+					chart_name: "overview",
+					period_selected: seriesType,
+					previous_period: currentOverviewPeriod
+				});
+			}
+			currentOverviewPeriod = seriesType;
 			var columnData = [];
 			var areaData = [];
 			var lineData = [];
@@ -684,8 +693,17 @@
 		var chartBar1 = new ApexCharts(document.querySelector("#earningChart"), options);
 		chartBar1.render();
 		
+		var currentEarningPeriod = 'day';
 		$(".earning-chart .nav-link").on('click',function(){
 			var seriesType = $(this).attr('data-series');
+			if (typeof pendo !== "undefined") {
+				pendo.track("dashboard_period_changed", {
+					chart_name: "earning",
+					period_selected: seriesType,
+					previous_period: currentEarningPeriod
+				});
+			}
+			currentEarningPeriod = seriesType;
 			var columnData = [];
 			switch(seriesType) {
 				case "day":
@@ -791,11 +809,17 @@
 			showTooltip: true,
 			onRegionClick: function(element, code, region)
 			{
+				if (typeof pendo !== "undefined") {
+					pendo.track("map_region_clicked", {
+						region_name: region,
+						region_code: code.toUpperCase()
+					});
+				}
 				var message = 'You clicked "'
 					+ region
 					+ '" which has the code: '
 					+ code.toUpperCase();
-		 
+
 				alert(message);
 			}
 		});

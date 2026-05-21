@@ -42,26 +42,50 @@ function addSwitcher()
 
     //change the theme typography controller
     typographySelect.on('change', function() {
+        var prevVal = body.attr('data-typography') || '';
         body.attr('data-typography', this.value);
-		
+
 		setCookie('typography', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "typography",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
 
     //change the theme version controller
     versionSelect.on('change', function() {
+        var prevVal = body.attr('data-theme-version') || '';
 		body.attr('data-theme-version', this.value);
-		
+
 		setCookie('version', this.value);
-    }); 
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "background_mode",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
+    });
 	
 	
 
     //change the sidebar position controller
     sidebarPositionSelect.on('change', function() {
-        this.value === "fixed" && body.attr('data-sidebar-style') === "modern" && body.attr('data-layout') === "vertical" ? 
+        var prevVal = body.attr('data-sidebar-position') || '';
+        this.value === "fixed" && body.attr('data-sidebar-style') === "modern" && body.attr('data-layout') === "vertical" ?
         alert("Sorry, Modern sidebar layout dosen't support fixed position!") :
         body.attr('data-sidebar-position', this.value);
 		setCookie('sidebarPosition', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "sidebar_position",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
 		setTimeout(function(){
 			$(window).trigger('resize');
 		},200);
@@ -69,8 +93,16 @@ function addSwitcher()
 
     //change the header position controller
     headerPositionSelect.on('change', function() {
+        var prevVal = body.attr('data-header-position') || '';
         body.attr('data-header-position', this.value);
 		setCookie('headerPosition', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "header_position",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
 		setTimeout(function(){
 			$(window).trigger('resize');
 		},200);
@@ -87,15 +119,29 @@ function addSwitcher()
 
     //change the theme layout controller
     layoutSelect.on('change', function() {
+        var prevVal = body.attr('data-layout') || '';
         if(body.attr('data-sidebar-style') === 'overlay') {
             body.attr('data-sidebar-style', 'full');
             body.attr('data-layout', this.value);
-				
+            if (typeof pendo !== "undefined") {
+                pendo.track("theme_settings_changed", {
+                    setting_type: "layout",
+                    setting_value: this.value,
+                    previous_value: prevVal
+                });
+            }
             return;
         }
 
         body.attr('data-layout', this.value);
 		setCookie('layout', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "layout",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
 		setTimeout(function(){
 			$(window).trigger('resize');
 		},200);
@@ -145,6 +191,13 @@ function addSwitcher()
 		
 
         body.attr('data-sidebar-style', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "sidebar_style",
+                setting_value: this.value,
+                previous_value: body.attr('data-sidebar-style') || ''
+            });
+        }
 
          if(body.attr('data-sidebar-style') === 'icon-hover') {
             $('.deznav').on('hover',function() {
@@ -168,30 +221,70 @@ function addSwitcher()
 	
 	//change the nav-header background controller
     $('input[name="navigation_header"]').on('click', function() {
+        var prevVal = body.attr('data-nav-headerbg') || '';
 		body.attr('data-nav-headerbg', this.value);
 		setCookie('navheaderBg', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "nav_header_color",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
 	
     //change the header background controller
     $('input[name="header_bg"]').on('click', function() {
+        var prevVal = body.attr('data-headerbg') || '';
         body.attr('data-headerbg', this.value);
 		setCookie('headerBg', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "header_color",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
 
     //change the sidebar background controller
     $('input[name="sidebar_bg"]').on('click', function() {
+        var prevVal = body.attr('data-sidebarbg') || '';
         body.attr('data-sidebarbg', this.value);
 		setCookie('sidebarBg', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "sidebar_color",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
 	
 	//change the primary color controller
     $('input[name="primary_bg"]').on('click', function() {
+        var prevVal = body.attr('data-primary') || '';
         body.attr('data-primary', this.value);
 		setCookie('primary', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "primary_color",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
 	$('input[name="secondary_bg"]').on('click', function() {
+        var prevVal = body.attr('data-secondary') || '';
         body.attr('data-secondary', this.value);
 		setCookie('secondary', this.value);
+        if (typeof pendo !== "undefined") {
+            pendo.track("theme_settings_changed", {
+                setting_type: "secondary_color",
+                setting_value: this.value,
+                previous_value: prevVal
+            });
+        }
     });
     
 })(jQuery);

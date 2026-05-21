@@ -6193,6 +6193,35 @@
 	<script src="assets/js/styleSwitcher.js"></script>
 	<script src="assets/js/demo.min.js"></script>
 
+	<!-- Pendo Track Event: header_search_submitted -->
+	<script>
+	(function() {
+		var searchInput = document.querySelector('.header .search-area input[placeholder="Search"]');
+		if (!searchInput) return;
+		var form = searchInput.closest('form');
+		if (form) {
+			form.addEventListener('submit', function(e) {
+				if (typeof pendo !== "undefined") {
+					pendo.track("header_search_submitted", {
+						search_query: (searchInput.value || "").substring(0, 100),
+						search_source: "header"
+					});
+				}
+			});
+		}
+		searchInput.addEventListener('keydown', function(e) {
+			if (e.key === 'Enter') {
+				if (typeof pendo !== "undefined") {
+					pendo.track("header_search_submitted", {
+						search_query: (searchInput.value || "").substring(0, 100),
+						search_source: "header"
+					});
+				}
+			}
+		});
+	})();
+	</script>
+
 
 </body>
 
