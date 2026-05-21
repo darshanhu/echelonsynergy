@@ -3,7 +3,7 @@
     var v, w, x, y, z;
     o = p[d] = p[d] || {};
     o._q = o._q || [];
-    v = ["initialize", "identify", "updateOptions", "pageLoad", "track"];
+    v = ["initialize", "identify", "updateOptions", "pageLoad", "track", "trackAgent"];
     for (w = 0, x = v.length; w < x; ++w)
       (function (m) {
         o[m] =
@@ -50,7 +50,7 @@
       domain: "echelonsynergy.com",
     },
   });
-})("43994d6b-66ea-49fc-71f1-31077e387150"); // Darshan Default App API Key
+})("32ccb6d6-9eb9-4469-98cb-e55c5efe2cbb"); // Darshan Default App API Key
 // })("01d88629-ab01-43c3-64c5-fc9a83c7ed9b"); Horizon Financial Group API Key
 
 // Start of Async Drift Code
